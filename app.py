@@ -57,6 +57,25 @@ def save_posts() -> None:
         print(f"Error: Unable to write to the file '{PATH}'. Details: {e}")
 
 
+@app.route('/like/<int:post_id>')
+def add_like(post_id):
+    """
+        Increments the like count for a specific blog post.
+
+        Args:
+            post_id (int): The ID of the post to like.
+        Returns:
+        A redirect to the home page, displaying the updated list of posts.
+    """
+    post = get_post_by_id(post_id)
+    if post is None:
+        abort(404, description=f"Post with ID [{post_id}] not found.")
+
+    post['likes'] = post.get('likes', 0) + 1
+    save_posts()
+    return redirect('/')
+
+
 @app.route('/delete/<int:post_id>')
 def delete(post_id):
     """
