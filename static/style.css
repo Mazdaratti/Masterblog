@@ -49,25 +49,6 @@ h1 {
     margin-top: 15px;
 }
 
-.delete-button {
-    color: #e74c3c;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 6px;
-    background-color: #ffebeb;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.delete-button:hover {
-    background-color: #e74c3c;
-    color: #fff;
-}
 
 
 /* Add Post Button */
