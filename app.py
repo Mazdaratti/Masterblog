@@ -7,14 +7,14 @@ app = Flask(__name__)
 
 def get_posts() -> list:
     """
-                Loads blog posts data from the JSON file.
+        Loads blog posts data from the JSON file.
 
-                Returns:
-                    list: A list of dictionaries containing blog information.
+        Returns:
+            list: A list of dictionaries containing blog information.
 
-                Raises:
-                    JSONDecodeError: If the JSON file format is invalid.
-            """
+        Raises:
+            JSONDecodeError: If the JSON file format is invalid.
+    """
 
     try:
         with open(PATH, "r", encoding="utf-8") as file:
