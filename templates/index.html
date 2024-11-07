@@ -15,6 +15,7 @@
             <p>{{post.content}}</p>
             <div class="controls">
                 <a href="/delete/{{ post.id }}" title="Remove {{ post.title }}">🗑️</a>
+                <a href="/update/{{ post.id }}" title="Update {{ post.title }}">✏️</a>
             </div>
         </div>
         {% endfor %}
