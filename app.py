@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from data import PATH
 
 app = Flask(__name__)
@@ -26,7 +26,45 @@ def get_posts() -> list:
         print(f"Error: File '{PATH}' not found. Returning empty list.")
         return []
 
-    
+
+def save_posts(blog_posts):
+    """
+        Saves blog posts data to the JSON file.
+
+        Args:
+            blog_posts (list): List of posts data to save.
+
+        Raises:
+            IOError: If there is an error writing to the file.
+    """
+    try:
+        with open(PATH, "w", encoding="utf-8") as file:
+            json.dump(blog_posts, file, ensure_ascii=False, indent=4)
+    except IOError as e:
+        print(f"Error: Unable to write to the file '{PATH}'. Details: {e}")
+
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if request.method == 'POST':
+        blog_posts = get_posts()
+        if blog_posts:
+            post_id = blog_posts[-1]['id'] + 1
+        else:
+            post_id = 1
+        post = {'id': post_id,
+                'author': request.form.get('author'),
+                'title': request.form.get('title'),
+                'content': request.form.get('content'),
+                }
+        blog_posts.append(post)
+        save_posts(blog_posts)
+
+        return redirect(url_for('index'))
+
+    return render_template("add.html")
+
+
 @app.route('/')
 def index():
     blog_posts = get_posts()
@@ -35,4 +73,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
-
