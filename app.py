@@ -58,7 +58,7 @@ def save_posts() -> None:
 
 
 @app.route('/delete/<int:post_id>')
-def delete(post_id: int):
+def delete(post_id):
     """
     Deletes a post by its ID.
 
@@ -75,6 +75,31 @@ def delete(post_id: int):
         return redirect('/')
     else:
         abort(404, description=f"Error: Post with ID [{post_id}] does not exist.")
+
+
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
+def update(post_id):
+    """
+        Handles updating an existing blog post.
+
+        Args:
+            post_id (int): The ID of the post to update.
+
+        Returns:
+            If POST: Redirects to the home page after updating the post.
+            If GET: Renders the update post form with the post details.
+            If post is not found: Returns a 404 error.
+    """
+    post = get_post_by_id(post_id)
+    if post is None:
+        abort(404, description=f"Error: Post with ID [{post_id}] does not exist.")
+    if request.method == 'POST':
+        post['author'] = request.form.get('author', post['author'])
+        post['title'] = request.form.get('title', post['title'])
+        post['content'] = request.form.get('content', post['content'])
+        save_posts()
+        return redirect('/')
+    return render_template('update.html', post=post)
 
 
 @app.route('/add', methods=['GET', 'POST'])
