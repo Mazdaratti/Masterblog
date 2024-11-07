@@ -16,6 +16,7 @@
             <div class="controls">
                 <a href="/delete/{{ post.id }}" title="Remove {{ post.title }}">🗑️</a>
                 <a href="/update/{{ post.id }}" title="Update {{ post.title }}">✏️</a>
+                <span class="likes"><a href="/like/{{ post.id }}" title="Like {{ post.title }}">👍</a> {{post.likes}}</span>
             </div>
         </div>
         {% endfor %}
