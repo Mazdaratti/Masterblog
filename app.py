@@ -92,8 +92,7 @@ def delete(post_id):
         blog_posts.remove(post)
         save_posts()  # Save updated data to file
         return redirect('/')
-    else:
-        abort(404, description=f"Error: Post with ID [{post_id}] does not exist.")
+    abort(404, description=f"Error: Post with ID [{post_id}] does not exist.")
 
 
 @app.route('/update/<int:post_id>', methods=['GET', 'POST'])
