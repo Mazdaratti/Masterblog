@@ -13,11 +13,11 @@
     <h1>Update Blog Post</h1>
     <form class="add-post" action="{{ url_for('update', post_id=post.id) }}" method="POST">
         <label for="author">Author</label>
-        <input type="text" name="author" id="author" placeholder="Author" value="{{ post.author }}">
+        <input type="text" name="author" id="author" placeholder="Author" value="{{ post.author }}" required>
         <label for="title">Post Title</label>
-        <input type="text" name="title" id="title" placeholder="Post title" value="{{ post.title }}">
+        <input type="text" name="title" id="title" placeholder="Post title" value="{{ post.title }}" required>
         <label for="content">Post Text</label>
-        <textarea name="content" id="content" rows="20" placeholder="Post text"> {{post.content}}</textarea>
+        <textarea name="content" id="content" rows="20" placeholder="Post text" required> {{post.content}}</textarea>
         <input type="submit" value="Add post" id="submit">
     </form>
 </div>
