@@ -4,27 +4,26 @@ from data import PATH
 
 app = Flask(__name__)
 
-# Global variable to store the blog posts data
-blog_posts = []
 
-
-def load_posts() -> None:
+def load_posts() -> list[dict]:
     """
-    Loads blog posts data from the JSON file into the global `blog_posts` variable.
-
+    Loads blog posts data from a JSON file and returns it as a sorted list.
+    Returns:
+         list: A sorted list of blog posts (dictionaries).
+               If an error occurs, an empty list is returned.
     Raises:
-        JSONDecodeError: If the JSON file format is invalid.
+        JSONDecodeError: If the JSON file format is invalid and cannot be decoded.
+        FileNotFoundError: If the specified JSON file is not found.
     """
-    global blog_posts
     try:
         with open(PATH, "r", encoding="utf-8") as file:
-            blog_posts = sorted(json.load(file), key=lambda x: x['id'])
+            return sorted(json.load(file), key=lambda x: x['id'])
     except json.JSONDecodeError:
         print("Error: The JSON file could not be decoded. Please check the file format.")
-        blog_posts = []
+        return []
     except FileNotFoundError:
         print(f"Error: File '{PATH}' not found. Returning empty list.")
-        blog_posts = []
+        return []
 
 
 def get_post_by_id(post_id: int) -> dict | None:
@@ -164,5 +163,5 @@ def index():
 
 
 if __name__ == '__main__':
-    load_posts()  # Load posts once at startup
+    blog_posts = load_posts()
     app.run(host="0.0.0.0", port=5000, debug=True)
