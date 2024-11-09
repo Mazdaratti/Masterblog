@@ -7,8 +7,10 @@ Masterblog is a simple, Flask-based blog application developed as part of a Soft
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Project Requirements](#project-requirements)
 - [Contributing](#contributing)
-- [License](##license)
+- [License](#license)
 
 ## Features 🛠
 
@@ -59,7 +61,7 @@ To run the application:
    - Delete: Use the "🗑️" button to delete the post.
    - Like: Click the "👍" button on each post to increase its like count.
 
-### Project Structure 📂
+## Project Structure 📂
 ```
 Masterblog/
 ├── data/                    
