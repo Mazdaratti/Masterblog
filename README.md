@@ -8,7 +8,7 @@ Masterblog is a simple, Flask-based blog application developed as part of a Soft
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
+- [License](##license)
 
 ## Features 🛠
 
@@ -60,7 +60,7 @@ To run the application:
    - Like: Click the "👍" button on each post to increase its like count.
 
 ### Project Structure 📂
-
+```
 Masterblog/
 ├── data/                    
 │   ├── __init__.py             # Package initializer
@@ -74,7 +74,7 @@ Masterblog/
 ├── app.py                      # Main application file with routes and logic
 ├── requirements.txt            # Dependencies
 └── readme.md                   # Project documentation
-
+```
 ## Technologies Used 💻
 
 - **Flask**: Web framework used to create the server-side logic and handle routing.
